@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__ . '/../config/database.php');
 
-// Return JSON response instead of redirects
+// Return JSON response
 header('Content-Type: application/json');
 
 if (isset($_SESSION['user_id'])) {
