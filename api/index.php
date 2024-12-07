@@ -1,16 +1,18 @@
 <?php
-session_start();
+// Remove session_start() as it may cause issues with Vercel's serverless functions
+// session_start();
+
 require_once(__DIR__ . '/../config/database.php');
+
+// Return JSON response instead of redirects for API endpoints
+header('Content-Type: application/json');
 
 if (isset($_SESSION['user_id'])) {
     if ($_SESSION['role'] === 'admin') {
-        header('Location: ../admin/dashboard.php');
-        exit();
+        echo json_encode(['redirect' => '../admin/dashboard.php']);
     } else if ($_SESSION['role'] === 'user') {
-        header('Location: ../user/dashboard.php');
-        exit();
+        echo json_encode(['redirect' => '../user/dashboard.php']);
     }
+} else {
+    echo json_encode(['redirect' => '../views/login.php']);
 }
-
-header('Location: ../views/login.php');
-exit();
