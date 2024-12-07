@@ -1,10 +1,7 @@
 <?php
-// Remove session_start() as it may cause issues with Vercel's serverless functions
-// session_start();
-
 require_once(__DIR__ . '/../config/database.php');
 
-// Return JSON response instead of redirects for API endpoints
+// Return JSON response instead of redirects
 header('Content-Type: application/json');
 
 if (isset($_SESSION['user_id'])) {
